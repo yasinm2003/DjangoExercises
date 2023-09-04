@@ -1,0 +1,92 @@
+<style>
+    *{
+        font-family: Arial;
+        background-color: #06283d;
+    }
+    .main-container{
+        display: grid;
+        grid-template-columns: 1fr 4fr;
+    }
+    .list{
+        color: #dff6ff;
+        text-decoration: none;
+        cursor: pointer;
+        transition: all 0.3s ease-in;
+    }
+    .list:hover{
+        color: #256d85;
+        font-size: larger;
+    }
+    .right-side{
+        border: none;
+        margin: 20px;
+        border-radius: 50px;
+        background-color: #dff6ff99;
+    }
+    .news_container{
+        margin: 50px 50px;
+        background-color: #256d85;
+        border: none;
+        border-radius: 30px;
+        box-shadow: 0 10px 10px #06283d;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 3fr;
+        transition: all 0.3s ease-in;
+    }
+    .news_container:hover{
+        margin: 40px;
+        box-shadow: 0 15px 15px #06283d;
+    }
+    .topic{
+        padding: 10px;
+        margin: 10px;
+        background-color: inherit;
+        color: #dff6ff;
+        text-decoration: none;
+    }
+    .text{
+        background-color: #dff6ff99;
+        color: #06283d;
+        border-radius: 20px;
+        margin: 5px;
+        display: grid;
+        padding: 20px;
+        cursor: pointer;
+    }
+    .person-name{
+        background-color: #dff6ff99;
+        color: #06283d;
+        margin: 10px 200px;
+        text-align: center;
+        border-radius: 10px;
+
+    }
+</style>
+
+{% extends 'header.html' %}
+
+{% block content %}
+<div class="main-container">
+    <div class="left-site">
+        <ul>
+            <a href="{% url 'home' %}" class="list">All</a>
+        </ul>
+        {% for topic in topics %}
+            <ul>
+                <a href="{% url 'home' %}?q={{topic.name}}" class="list">{{topic}}</a>
+            </ul>
+        {% endfor %}
+    </div>
+    <div class="right-side">
+        {% for i in news %}
+            <div class="news_container">
+                <a href="{% url 'home' %}?q={{i.topic}}" class="topic">{{i.topic}}</a>
+                <p class="text">{{i.text}}</p>
+                <p class="person-name">written by {{i.user}} / {{i.date}}</p>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock content %}

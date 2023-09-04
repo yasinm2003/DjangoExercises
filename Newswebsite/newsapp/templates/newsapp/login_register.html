@@ -1,0 +1,64 @@
+{% extends 'header.html' %}
+
+{% block content %}
+<style>
+    .main{
+        place-items: center;
+    }
+    *{
+        font-family: Arial;
+        background-color: #06283d;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        background-color: #dff6ff99;
+        padding: 50px;
+        border: none;
+        border-radius: 10px;
+    }
+    label{
+        background-color: inherit;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        box-shadow: 0 5px 5px #06283d;
+        color: #06283d;
+        margin: 20px 0;
+        transition: all 0.2s ease-in;
+    }
+    label:hover{
+        box-shadow: none;
+        padding: 8px;
+    }
+    input{
+        background-color: #dff6ff;
+        color: #06283d;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+    }
+    .button{
+        background-color: #dff6ff;
+        margin: 20px 0;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        transition: all 0.2s ease-in;
+    }
+    .button:active{
+        background-color: #06283d;
+        color: #dff6ff;
+    }
+</style>
+
+<form method="POST" action="">
+    {% csrf_token %}
+    <label for="username">Username: </label>
+    <input type="text" name="username" placeholder="Enter username">
+    <label for="password">Password: </label>
+    <input type="password" name="password" placeholder="Enter password">
+    <input class="button" type="submit" value="Login">
+</form>
+
+{% endblock content %}

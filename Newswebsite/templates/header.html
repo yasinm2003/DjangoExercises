@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>header page</title>
+    </head>
+    <body>
+        <div class="header-container">
+            <h3>Simple News Website</h3>
+            <div>
+                {% if request.user.is_authenticated %}
+                <p>welcome back {{request.user}}</p>
+                <a href="{% url 'logout' %}">Logout</a>
+                {% else %}
+                <a href="{% url 'login' %}">Login</a>                
+            </div>
+        </div>
+        {% endif %}
+        <div class="main">
+            {% block content %}
+            {% endblock content %}
+        </div>
+    </body>
+</html>
+
+<style>
+    .header-container{
+        display: grid;
+        grid-template-columns: 1fr;
+        margin-bottom: 50px;
+    }
+    h3{
+        color: #dff6ff;
+        text-align: center;
+    }
+    p{
+        color: #dff6ff;
+
+    }
+    a{
+        color: #dff6ff;
+        text-decoration: none;
+        transition: all 0.2s ease-in;
+    }
+    a:hover{
+        color: #256d85;
+    }
+    .main{
+        display: grid;
+    }
+</style>
